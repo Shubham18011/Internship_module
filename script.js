@@ -1,19 +1,3 @@
-
-
-// function populateDropdown() {
-//     const dropdown = document.getElementById("branch");
-//     for (let i = 0; i < branches.length; i++) {
-//         const option = document.createElement("option");
-//         option.value = branches[i];
-//         option.text = branches[i];
-//         dropdown.appendChild(option);
-//     }
-// }
-
-// Populate the dropdown when the page loads
-// populateDropdown();
-
-
 //Function getting called when form is submited 
 document.getElementById('counselingForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -61,7 +45,7 @@ document.getElementById('counselingForm').addEventListener('submit', function (e
     const collegeOutput = document.getElementById('collegeList');
     collegeOutput.style = `padding: 20px;`;
     collegeOutput.innerHTML = `<h2>Colleges for ${name}</h2><p>Based on your rank <span style=" font-weight: bold;">${rank}</span> and branch <span style=" font-weight: bold;">${branch}</span>, this is the best college recommended:<h3>${filteredColleges[0][0]}</h3>Following are list colleges you can have. You can select only 3 checkboxes at a time:</p>
-    ${tableHTML}<button id="saveButton">Save</button>`;
+    ${tableHTML}<button id="SaveCollage">Save</button>`;
 
     //only 3 checkboxes can be selected at a time
     const checkboxes = document.querySelectorAll('.limitCheckbox');
@@ -88,7 +72,7 @@ document.getElementById('counselingForm').addEventListener('submit', function (e
             });
         });
     });
-    document.getElementById('saveButton').addEventListener('click', function () {
+    document.getElementById('SaveCollage').addEventListener('click', function () {
         if (checkedCount != 3) {
             alert('Warning!! Select at least 3 colleges to proceed.');
             return;
@@ -105,10 +89,11 @@ document.getElementById('counselingForm').addEventListener('submit', function (e
                 }
             }
         })
-        alert(`${CollegeAllocated} has been allocated to you.`)
+        localStorage.clear();
+        localStorage.setItem("CollegeAllocated",CollegeAllocated);
+        location.href = "/result.html";
     });
 });
-
 // List of Colleges
 const engineeringColleges = [
     [
